@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday</title>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Itim', cursive;
+      background: linear-gradient(135deg, #ffd7e9, #fbe5c8);
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .letter {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 12px;
+      padding: 30px;
+      width: 80%;
+      max-width: 500px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      z-index: 2;
+    }
+
+    .letter h1 {
+      font-size: 2rem;
+      color: #e67eac;
+      margin-bottom: 1rem;
+    }
+
+    .letter p {
+      font-size: 1.2rem;
+      color: #444;
+      line-height: 1.6;
+    }
+
+    .cake {
+      position: absolute;
+      bottom: -200px;
+      width: 140px;
+      animation: rise 6s ease-in-out forwards;
+      z-index: 1;
+    }
+
+    @keyframes rise {
+      to {
+        bottom: 100px;
+      }
+    }
+
+    .btn-back {
+      margin-top: 20px;
+      background-color: #fff;
+      border: 1px solid #e67eac;
+      color: #d1085f;
+      padding: 10px 20px;
+      border-radius: 12px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn-back:hover {
+      background-color: #ffeaf3;
+    }
+
+    .balloon {
+      position: absolute;
+      width: 40px;
+      height: 60px;
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .balloon::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      width: 2px;
+      height: 20px;
+      background: #333;
+      transform: translateX(-50%);
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-200px);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ลูกโป่ง -->
+  <script>
+    const colors = ["#FF69B4", "#FFD700", "#87CEEB", "#FF8C00", "#ADFF2F", "#BA55D3"];
+    for (let i = 0; i < 12; i++) {
+      const balloon = document.createElement("div");
+      balloon.classList.add("balloon");
+      balloon.style.left = Math.random() * 100 + "%";
+      balloon.style.animationDelay = Math.random() * 5 + "s";
+      balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      document.body.appendChild(balloon);
+    }
+  </script>
+
+  <!-- จดหมาย -->
+  <div class="letter">
+    <h1>สุขสันต์วันเกิดนะ!</h1>
+    <p>
+      ในวันพิเศษแบบนี้ อยากให้พี่ได้รู้ว่าพี่คือคนสำคัญสำหรับใครหลาย ๆ คน รวมถึงผมด้วย<br>
+            ขอให้ปีนี้เป็นปีที่เต็มไปด้วยพลังบวก ความสุข และโอกาสดี ๆ<br>
+            ขอให้สิ่งที่พี่ฝันไว้ ค่อย ๆ กลายเป็นจริงทีละอย่าง ขอให้พี่ไม่ต้องเหนื่อยคนเดียว และมีคนคอยอยู่ข้าง ๆ เสมอ<br>
+            ขอให้ทุกเช้าที่ตื่นมา พี่ได้ยิ้มให้กับตัวเอง และรู้สึกว่าตัวเองมีคุณค่า<br>
+            ไม่ว่าจะเจอเรื่องยากแค่ไหน ขอให้พี่ผ่านมันไปได้อย่างเข้มแข็งเหมือนทุกครั้งที่ผ่านมา<br><br>
+
+            ขอบคุณที่เป็นตัวของตัวเอง<br>
+            ขอบคุณที่ไม่ยอมแพ้<br>
+            ขอบคุณที่ยังอยู่ตรงนี้<br><br>
+
+            ขอให้วันนี้และทุก ๆ วันต่อจากนี้<br>
+            เป็นวันที่หัวใจพี่อบอุ่นเหมือนแสงแดด และมีความสุขเหมือนเสียงหัวเราะที่จริงใจที่สุด 💛<br><br>
+            25/4/2568 19 Years old
+    </p>
+    <button class="btn-back" onclick="window.location.href='index.html'">ย้อนกลับ</button>
+  </div>
+
+  <!-- เพลง (ไม่โหลดซ้ำ แค่ควบคุม) -->
+  <script>
+    // พยายามเล่นต่อเนื่องหากเปิดไว้
+    const music = new Audio("happy.mp3");
+    music.loop = true;
+
+    if (localStorage.getItem("musicPlaying") === "true") {
+      music.play().catch(() => {
+        console.log("รอผู้ใช้เปิดเสียง");
+      });
+    }
+
+    // ถ้ากลับไปหน้าหลักแล้วกดปิด ให้หยุดไว้
+    window.addEventListener("beforeunload", () => {
+      if (!music.paused) {
+        localStorage.setItem("musicPlaying", "true");
+      } else {
+        localStorage.setItem("musicPlaying", "false");
+      }
+    });
+  </script>
+
+</body>
+</html>
